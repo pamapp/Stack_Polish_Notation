@@ -3,25 +3,46 @@
 class Operator
 {
 private:
-    const char sign_;
-    int priority_;
+    unsigned char sign_;
 public:
-    Operator(const char s): sign_(s){}
+    Operator(): sign_('\0'){}
+    Operator(unsigned char s): sign_(s){}
     ~Operator(){}
+    
+    char getSign()
+    {
+        return sign_;
+    }
+    
     int getPriority()
     {
         if (sign_ == '(')
-            return this->priority_ = 0;
+            return 0;
         else if (sign_ == ')')
-            return this->priority_ = 1;
+            return 1;
         else if (sign_ == '+' || sign_ == '-')
-            return this->priority_ = 2;
+            return 2;
         else if (sign_ == '*' || sign_ == '/')
-            return this->priority_ = 3;
+            return 3;
         else if (sign_ == '^')
-            return this->priority_ = 4;
+            return 4;
         else
-            return this->priority_ = -1;
+            return -1;
     }
-
+  
+    bool operator!= (const Operator& sign1)
+    {
+      if (sign_ == sign1.sign_)
+        return false;
+      else
+        return true;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& out, const Operator& sign);
 };
+
+std::ostream& operator<<(std::ostream& out, const Operator& sign)
+{
+  out << sign.sign_;
+  return out;
+}

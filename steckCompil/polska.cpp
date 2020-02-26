@@ -1,44 +1,30 @@
 #include <iostream>
+#include <math.h>
 #include "steck.hpp"
 #include "steckArray.hpp"
+#include "operator.hpp"
 
-int priority(char cText)
-{
-    if (cText == '(')
-        return 0;
-    if (cText == ')')
-        return 1;
-    if (cText == '+' || cText == '-')
-        return 2;
-    if (cText == '*' || cText == '/')
-        return 3;
-    if (cText == '^')
-        return 4;
-    return -1;
-}
 
 void polska(const char* expr, int maxDeep = 30)
 {
-    Stack<char>* stack = new StackArray<char>(maxDeep);
+    Stack<Operator>* stack = new StackArray<Operator>(maxDeep);
 
-    //  Operator sign('0');
-    char cText = '\0';
+    Operator sign('\0');
     try
     {
-        for (int i = 0; ((cText = expr[i]) != '\0'); i++)
+        for (int i = 0; ((sign = expr[i]) != '\0'); i++)
         {
-            switch (priority(cText))
+            switch (sign.getPriority())
             {
                 case 0: //'('
-                    stack->push(cText);
+                    stack->push(sign);
                     break;
                 case 1: //')'
                     while (!stack->isEmpty())
                     {
-                        char stackHead = stack->pop();
-                        if (stackHead == '(')
+                        Operator stackHead = stack->pop();
+                        if (stackHead.getSign() == '(')
                         {
-                            
                             break;
                         }
                         else
@@ -50,8 +36,8 @@ void polska(const char* expr, int maxDeep = 30)
                 case 2: //'+', '-'
                     while (!stack->isEmpty())
                     {
-                        char stackHead = stack->pop();
-                        if (stackHead != '(')
+                        Operator stackHead = stack->pop();
+                        if (stackHead.getSign() != '(')
                         {
                             std::cout << stackHead;
                         }
@@ -61,16 +47,15 @@ void polska(const char* expr, int maxDeep = 30)
                             break;
                         }
                     }
-                    stack->push(cText);
+                    stack->push(sign);
                     break;
                 case 3: //'*', '/'
                     while (!stack->isEmpty())
                     {
-                        char stackHead = stack->pop();
-                        if (priority(stackHead) >= 3)
+                        Operator stackHead = stack->pop();
+                        if (stackHead.getPriority() >= 3)
                         {
                             std::cout << stackHead;
-
                         }
                         else
                         {
@@ -78,13 +63,75 @@ void polska(const char* expr, int maxDeep = 30)
                             break;
                         }
                     }
-                    stack->push(cText);
+                    stack->push(sign);
                     break;
                 case 4: //'^'
-                    stack->push(cText);
+                    stack->push(sign);
                     break;
                 case -1: //'A...Z'
-                    std::cout << cText;
+                    std::cout << sign;
+                    break;
+            }
+        }
+        while (!stack->isEmpty())
+        {
+            cout << stack->pop();
+        }
+    }
+    catch (StackUnderflow)
+    {
+        std::cout << "Error Under";
+    }
+    catch (StackOverflow)
+    {
+        std::cout << "Error Over";
+    }
+}
+
+
+void calculate(const char* expr, int maxDeep = 30)
+{
+    Stack<int>* stack = new StackArray<int>(maxDeep);
+
+    //  Operator sign('0');
+    Operator sign('\0');
+    int oper1;
+    int oper2;
+    int result;
+    try
+    {
+        for (int i = 0; ((sign = expr[i]) != 0); i++)
+        {
+            switch (sign.getPriority())
+            {
+                case 2:
+                    oper1 = stack->pop();
+                    oper2 = stack->pop();
+                    if (sign.getSign() == '+')
+                        result = oper2 + oper1;
+                    else
+                        result = oper2 - oper1;
+                    stack->push(result);
+                    break;
+                case 3:
+                    oper1 = stack->pop();
+                    oper2 = stack->pop();
+                    if (sign.getSign() == '*')
+                        result = oper2 * oper1;
+                    else
+                        result = oper2 / oper1;
+                    stack->push(result);
+                    break;
+                case 4:
+                    oper1 = stack->pop();
+                    oper2 = stack->pop();
+                    result = pow(oper2, oper1);
+                    stack->push(result);
+                    break;
+                case -1:
+                    char cText = sign.getSign();
+                    result = std::atoi(&cText);
+                    stack->push(result);
                     break;
             }
         }

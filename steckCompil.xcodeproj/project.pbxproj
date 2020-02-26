@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		915ACB242401A31D0084F408 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915ACB232401A31D0084F408 /* main.cpp */; };
 		915ACB302401B09E0084F408 /* polska.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915ACB2F2401B09E0084F408 /* polska.cpp */; };
-		915ACB322401B0B70084F408 /* calculate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915ACB312401B0B70084F408 /* calculate.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +30,6 @@
 		915ACB2D2401A3C80084F408 /* steckArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = steckArray.hpp; sourceTree = "<group>"; };
 		915ACB2E2401A4480084F408 /* operator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = operator.hpp; sourceTree = "<group>"; };
 		915ACB2F2401B09E0084F408 /* polska.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = polska.cpp; sourceTree = "<group>"; };
-		915ACB312401B0B70084F408 /* calculate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = calculate.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +67,6 @@
 				915ACB2E2401A4480084F408 /* operator.hpp */,
 				915ACB232401A31D0084F408 /* main.cpp */,
 				915ACB2F2401B09E0084F408 /* polska.cpp */,
-				915ACB312401B0B70084F408 /* calculate.cpp */,
 			);
 			path = steckCompil;
 			sourceTree = "<group>";
@@ -133,7 +130,6 @@
 			files = (
 				915ACB242401A31D0084F408 /* main.cpp in Sources */,
 				915ACB302401B09E0084F408 /* polska.cpp in Sources */,
-				915ACB322401B0B70084F408 /* calculate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
