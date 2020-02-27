@@ -65,8 +65,8 @@
 				915ACB2C2401A3810084F408 /* steck.hpp */,
 				915ACB2D2401A3C80084F408 /* steckArray.hpp */,
 				915ACB2E2401A4480084F408 /* operator.hpp */,
-				915ACB232401A31D0084F408 /* main.cpp */,
 				915ACB2F2401B09E0084F408 /* polska.cpp */,
+				915ACB232401A31D0084F408 /* main.cpp */,
 			);
 			path = steckCompil;
 			sourceTree = "<group>";

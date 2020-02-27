@@ -32,3 +32,4 @@ public:
 private:
     const char* reason;  // ! const
 };
+

@@ -27,7 +27,7 @@ public:
         else if (sign_ == '^')
             return 4;
         else
-            return -1;
+            return 5;
     }
   
     bool operator!= (const Operator& sign1)
